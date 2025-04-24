@@ -12,70 +12,56 @@
       margin: 0;
       padding: 0;
     }
-    #demo {
+    /* #demo {
       margin: var(--ddd-spacing-2);
-    }
+    } */
     portfolio-very-theme {
       margin: var(--ddd-spacing-2);
-      border: var(--ddd-border-md);
-      border-radius: var(--ddd-radius-lg);
     }
     portfolio-very-theme:hover {
       box-shadow: var(--ddd-boxShadow-sm);
     }
-    #example {
+    portfolio-very-theme{
+      display: block;
+    }
+    /* #example {
       --portfolio-very-theme-font-size: var(--ddd-font-size-l);
       background-color: var(--ddd-accent-2);
       color: var(--ddd-primary-17);
-    }
+    } */
+
   </style>
   <title>portfolio-very-theme</title>
 </head>
 
 <body>
-  <div id="demo">
-    <h1>portfolio-very-theme</h1>
+  <portfolio-very-theme>
+    <port-screen screenNumber="1">
+      <h1>Cooper Waters</h1>
+      <p>About</p>
+    </port-screen>
+    <port-screen screenNumber="2">
+      <h1>Research</h1>
+      <p>text needed</p>
+    </port-screen>
+    <port-screen screenNumber="3">
+      <h1>Presentations</h1>
+      <p>text needed</p>
+    </port-screen>
+    <portfolio-screen screenNumber="4">
+      <h1>Proffessional development</h1>
+      <p>text needed</p>
+    </portfolio-screen>
+    <port-screen screenNumber="5">
+      <h1>Contact Me</h1>
+      <p>text needed</p>
+    </port-screen>
+  </portfolio-very-theme>
     <!-- this is going to do whatever the tag's defaults are -->
-    <h2>Portfolio</h2>
-  </div>
   <script type="module" src="./portfolio-very-theme.js"></script>
 
   <!-- Take HAX, the Web and you further down the rabbit hole -->
-  <style>
-    #follow-the-white-rabbit {
-      margin: var(--ddd-spacing-4) auto 64px  16px;
-      background-color: var(--ddd-accent-4);
-      color: black;
-    }
-    #follow-the-white-rabbit[open] summary {
-      background-color: var(--ddd-accent-4) !important;
-      color: black;
-    }
-    #follow-the-white-rabbit[open] .content {
-      padding: 0 var(--ddd-spacing-4);
-    }
-    #follow-the-white-rabbit ul,
-    #follow-the-white-rabbit li {
-      padding: 0;
-      margin: 0;
-    }
-    #follow-the-white-rabbit li {
-      font-size: var(--ddd-font-size-xs);
-      list-style: none;
-    }
-    #follow-the-white-rabbit li strong,
-    #follow-the-white-rabbit li a {
-      padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
-      color: black;
-      display: block;
-      font-weight: bold;
-    }
-    #follow-the-white-rabbit li:focus-within a,
-    #follow-the-white-rabbit li:hover a {
-      background-color: black;
-      color: yellow;
-    }
-  </style>
+  
   
 </body>
 </html>

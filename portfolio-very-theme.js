@@ -52,14 +52,42 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
       }
       .wrapper {
+        display: flex;
+        flex-direction: column;
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
       h3 span {
         font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
       }
+
+      ::slotted(portfolio-screen){
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+
+      ::slotted(portfolio-screen[screenNumber="1"]) {
+        background-color: var(--ddd-theme-default-beaverBlue); 
+      }
+      ::slotted(portfolio-screen[screenNumber="2"]) {
+        background-color: var(--ddd-theme-default-nittanyNavy); 
+      }
+      ::slotted(portfolio-screen[screenNumber="3"]) {
+        background-color: var(--ddd-theme-default-navy40);
+      }
+      ::slotted(portfolio-screen[screenNumber="4"]) {
+        background-color: var(--ddd-theme-default-potentialMidnight); 
+      }
+      ::slotted(portfolio-screen[screenNumber="5"]) {
+        background-color: var(--ddd-theme-default-potential50);
+      }
+
     `];
   }
 
@@ -67,7 +95,6 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
 <div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
   <slot></slot>
 </div>`;
   }
