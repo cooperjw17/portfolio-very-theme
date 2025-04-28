@@ -36,16 +36,26 @@
 
 <body>
   <portfolio-very-theme>
-    <port-screen screenNumber="1">
+    <port-header></port-header>
+
+    <port-screen screenNumber="1" title="About Me" screenType="screenRight"> 
+      <div slot="content">
+        <p>Need text</p>
+      </div>
+      <div slot="image">
+        <img class ="screenImage" src="C:\Users\coope\OneDrive\Attachments\misc\Headshot.JPG">
+      </div>
+      </port-screen>
+
       <h1>Cooper Waters</h1>
-      <p>About</p>
+      <p>About Me</p>
     </port-screen>
     <port-screen screenNumber="2">
       <h1>Research</h1>
       <p>text needed</p>
     </port-screen>
     <port-screen screenNumber="3">
-      <h1>Presentations</h1>
+      <h1>Presentations and Publications</h1>
       <p>text needed</p>
     </port-screen>
     <portfolio-screen screenNumber="4">
@@ -53,7 +63,7 @@
       <p>text needed</p>
     </portfolio-screen>
     <port-screen screenNumber="5">
-      <h1>Contact Me</h1>
+      <h1>Contact</h1>
       <p>text needed</p>
     </port-screen>
   </portfolio-very-theme>
