@@ -20,7 +20,7 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
   
     constructor() {
       super();
-      this.title = "";
+      this.screenType = "";
       this.t = this.t || {};
       this.t = {
         ...this.t,
@@ -39,6 +39,7 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
         ...super.properties,
         title: { type: String },
         screenNumber: { type: String },
+        screenType: { type: String },
       };
     }
   
@@ -64,14 +65,80 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
         h3 span {
           font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
         }
+        ::slotted(portfolio-screen){
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+
+      .screenContainer {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      padding: 2rem;
+      box-sizing: border-box;
+      justify-content: space-between;
+      align-items: center; 
+    }
+
+    .contentContainer {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+    }
+
+   
+    .imageContainer {
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .screenImage {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+
+    :host(.screenLeft) .screenContainer {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+:host(.screenRight) .screenContainer {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+:host(.screenBottom) .screenContainer {
+  flex-direction: column;
+  justify-content: space-between;
+}
       `];
     }
-  
+    firstUpdated() {
+      if (this.screenType) {
+        this.classList.add(this.screenType);
+      }
+    }
     // Lit render the HTML
     render() {
-      return html`
+        return html`
+        <div class="screenContainer ${this.screenType}">
+          <div class="contentContainer">
+            <h1>${this.title}</h1>
+            <slot name="content"></slot>
+          </div>
+          <div class="imageContainer">
+            <slot name="image"></slot>
+          </div>
+        </div>
       `;
     }
+    
   }
   
   globalThis.customElements.define(PortScreen.tag, PortScreen);
