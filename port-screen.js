@@ -105,7 +105,7 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
     // Lit render the HTML
     render() {
         return html`
-        <div class="wraper">
+        <div class="wrapper">
           <div class="image-container">            
             <slot name="image"></slot>
           </div>
