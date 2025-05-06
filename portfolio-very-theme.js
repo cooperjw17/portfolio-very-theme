@@ -22,28 +22,7 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
   }
-  //   this.title = "";
-  //   this.t = this.t || {};
-  //   this.t = {
-  //     ...this.t,
-  //     title: "Title",
-  //   };
-  //   this.registerLocalization({
-  //     context: this,
-  //     localesPath:
-  //       new URL("./locales/portfolio-very-theme.ar.json", import.meta.url).href +
-  //       "/../",
-  //     locales: ["ar", "es", "hi", "zh"],
-  //   });
-  // }
-
-  // // Lit reactive properties
-  // static get properties() {
-  //   return {
-  //     ...super.properties,
-  //     title: { type: String },
-  //   };
-  // }
+  
 
   // Lit scoped styles
   static get styles() {
@@ -65,7 +44,7 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
         height: 100%;
         width: 100%;
       }
-      portfolio-scroll-button {
+      scroll-button {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -85,19 +64,11 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
     <nav-bar></nav-bar>
-    <portfolio-scroll-button></portfolio-scroll-button>
+    <scroll-button></scroll-button>
     <div class="wrapper">
     <slot></slot>
     </div>`;
   }
-
-  // /**
-  //  * haxProperties integration via file reference
-  //  */
-  // static get haxProperties() {
-  //   return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-  //     .href;
-  // }
 }
 
 globalThis.customElements.define(PortfolioVeryTheme.tag, PortfolioVeryTheme);

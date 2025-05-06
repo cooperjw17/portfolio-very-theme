@@ -11,40 +11,40 @@
     :root, html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: var(--ddd-theme-default-nittanyNavy);
+      color-scheme: light dark;
+      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
     }
-    /* #demo {
-      margin: var(--ddd-spacing-2);
-    } */
-    portfolio-very-theme {
-      margin: var(--ddd-spacing-2);
+    #demo {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    portfolio-very-theme:hover {
-      box-shadow: var(--ddd-boxShadow-sm);
-    }
-    portfolio-very-theme{
+    port-screen {
       display: block;
+      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+      background-color: var(--ddd-theme-accent);
+      font-family: var(--ddd-font-navigation);
     }
-    /* #example {
-      --portfolio-very-theme-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
-      color: var(--ddd-primary-17);
-    } */
 
   </style>
   <title>portfolio-very-theme</title>
 </head>
 
 <body>
-  <portfolio-very-theme>
-    <port-header></port-header>
-
-    <port-screen screenNumber="1" title="About Me" screenType="screenRight"> 
-      <div slot="content">
-        <p>Need text</p>
-      </div>
-      <div slot="image">
-        <img class ="screenImage" src="C:\Users\coope\OneDrive\Attachments\misc\Headshot.JPG">
-      </div>
+  <div id="demo">
+    <portfolio-very-theme title="Portfolio">
+      <port-screen title="About" id="About" color="beaverBlue">
+        <img slot="image" src="add headshot">
+        <div>
+          <p>I am Cooper Water, I am a Sophomore at Penn State University studying Cybersecurity Analytics and Operations. 
+             I have achieved Dean's List in the Fall of 2023 and Spring of 2024. My
+            current GPA as of Spring 2025 is a 3.6. I am projected to graduate in May 2027. </p>
+        </div>
       </port-screen>
 
       <h1>Cooper Waters</h1>

@@ -4,8 +4,7 @@
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import '@haxtheweb/nav-bar/nav-bar.js';
+import "@haxtheweb/simple-cta/simple-cta.js";
 
 /**
  * `nav-bar`
@@ -21,16 +20,9 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath: new URL("./locales/", import.meta.url).href, 
-      locales: ["ar", "es", "hi", "zh"],
+    this._width = 0;
+    globalThis.addEventListener('resize', () => {
+      this._width = globalThis.innerWidth;
     });
   }
 
@@ -38,8 +30,15 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      _width: { type: Number },
     };
+  }
+
+  firstUpdated(changedProperties){
+    if (super.firstUpdated) {
+      super.firstUpdated(changedProperties);
+    }
+    this._width = globalThis.innerWidth;
   }
 
   // Lit scoped styles
@@ -48,27 +47,105 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
       css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
+        color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+        color-scheme: light dark;
+        background-color: var(--ddd-theme-default-nittanyNavy);
         font-family: var(--ddd-font-navigation);
+        width: 100%;
       }
       .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+        width: 100%;
+        height: 14%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: var(--ddd-theme-default-nittanyNavy);
       }
-      h3 span {
-        font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
+      .content{
+        font-size: var(--ddd-font-size-m);
+        text-align: center;
+      }
+      .sectionButtons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      simple-cta {
+        display: flex;
+        width: 20%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+      details {
+        display: flex;
+        flex-direction: column;
+      }
+      summary {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+      }
+      img {
+        display: flex;
+        flex-direction: row;
+      }
+      @media (max-width: 742px) {
+        :host {
+          color-scheme: light dark;
+          color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+        }
+        .wrapper {
+          flex-wrap: wrap;
+          height: auto;
+          padding: var(--ddd-spacing-1);
+        }
+        .sectionButtons {
+          flex-wrap: wrap;
+          gap: var(--ddd-spacing-1);
+        }
+        simple-cta {
+          width: 50%;
+          flex: 1 1 auto;
+          font-size: var(--ddd-font-size-4xs);
+        }
       }
     `];
   }
 
   // Lit render the HTML
   render() {
-    return html`
-    <div class="wrapper">
-    <h3><span>${this.t.title}:</span> ${this.title}</h3>
-    <slot></slot>
-    </div>`;
+    if(this._width < 742){
+      return html`
+      <div class="wrapper">
+        <img src="https://cdn0.iconfinder.com/data/icons/business-blue-series-set-1-1/128/a-21-1024.png" alt="Logo" width="30" height="auto">
+        <details>
+          <summary>Menu</summary>
+          <div class="sectionButtons">
+            <simple-cta><a href="#About">About</a></simple-cta>
+            <simple-cta><a href=#Work-Experience>Work Experience</a></simple-cta>
+            <simple-cta><a href=#Skills>Skills</a></simple-cta>
+            <simple-cta><a href=#Projects>Projects and Publications</a></simple-cta>
+            <simple-cta><a href=#Contact>Contact</a></simple-cta>
+          </div>
+        </details>
+      </div>`;
+    } else {
+      return html`
+      <div class="wrapper">
+        <div class="sectionButtons">
+          <img src="https://cdn0.iconfinder.com/data/icons/business-blue-series-set-1-1/128/a-21-1024.png" alt="Logo" width="50" height="auto">
+          <simple-cta><a href="#About">About</a></simple-cta>
+          <simple-cta><a href=#Work-Experience>Work Experience</a></simple-cta>
+          <simple-cta><a href=#Skills>Skills</a></simple-cta>
+          <simple-cta><a href=#Projects>Projects and Publications</a></simple-cta>
+          <simple-cta><a href=#Contact>Contact</a></simple-cta>         
+        </div>
+      </div>`;
+    }
   }
 }
 
