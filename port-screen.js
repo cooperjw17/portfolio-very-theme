@@ -4,7 +4,7 @@
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+//import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
  * `port-screen`
@@ -20,17 +20,18 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
   
     constructor() {
       super();
-      this.screenType = "";
-      this.t = this.t || {};
-      this.t = {
-        ...this.t,
-        title: "Title",
-      };
-      this.registerLocalization({
-          context: this,
-          localesPath: new URL("./locales/", import.meta.url).href, 
-          locales: ["ar", "es", "hi", "zh"],
-        });
+      this.title = "";
+      this.color = "";
+      // this.t = this.t || {};
+      // this.t = {
+      //   ...this.t,
+      //   title: "Title",
+      // };
+      // this.registerLocalization({
+      //     context: this,
+      //     localesPath: new URL("./locales/", import.meta.url).href, 
+      //     locales: ["ar", "es", "hi", "zh"],
+      //   });
     }
   
     // Lit reactive properties
@@ -38,8 +39,7 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
       return {
         ...super.properties,
         title: { type: String },
-        screenNumber: { type: String },
-        screenType: { type: String },
+        color: { type: String },
       };
     }
   
@@ -49,91 +49,80 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
       css`
         :host {
           display: block;
-          color: var(--ddd-theme-primary);
+          color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
           background-color: var(--ddd-theme-accent);
           font-family: var(--ddd-font-navigation);
           height: 100vh;
-          width: 100vw;
-          box-sizing: border-box;
-          
+          max-width: 100vw;
+          color-scheme: light dark;
         }
   
         .wrapper {
-          margin: var(--ddd-spacing-2);
-          padding: var(--ddd-spacing-4);
+          display: flex;
+          flex-direction: row;
+          height: 100vh;
+          max-width: 100vw;
+          background-color: var(--theme-default-color);
+          align-items: center;
+          gap: var(--ddd-spacing-2);
         }
-        h3 span {
-          font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
+
+        ::slotted(img[slot="image"]){
+          height: auto;
+          max-width: 350px;
+          width: 100%;
+          border-radius: var(--ddd-border-radius, 8px);
         }
-        ::slotted(portfolio-screen){
-        height: 100vh;
-        width: 100vw;
-        box-sizing: border-box;
-      }
 
-      .screenContainer {
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-      padding: 2rem;
-      box-sizing: border-box;
-      justify-content: space-between;
-      align-items: center; 
-    }
+        .content-container {
+          text-align: left;
+          flex: 2;
+          max-width: 100%;
+          font-size: var(--ddd-font-size-s);
+          color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+        }
 
-    .contentContainer {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-    }
+        .image-container {
+          text-align: center;
+          flex: 1;
+          max-width: 100%
+        }
 
-   
-    .imageContainer {
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .screenImage {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-
-    :host(.screenLeft) .screenContainer {
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-:host(.screenRight) .screenContainer {
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
-:host(.screenBottom) .screenContainer {
-  flex-direction: column;
-  justify-content: space-between;
-}
+        @media(max-width: 742px){
+          .wrapper {
+          display: flex;
+          width: 100vw;
+          height: auto;
+          flex-direction: column-reverse;
+        }
+        .content-container {
+          font-size: var(--ddd-font-size-4xs);
+        }
+        ::slotted(img[slot="image"]) {
+          max-width: 150px;
+          height: auto;
+        }
+        }        
       `];
     }
-    firstUpdated() {
-      if (this.screenType) {
-        this.classList.add(this.screenType);
+    
+    updated(changedProperties){
+      super.updated(changedProperties);
+      if (changedProperties.has('color')){
+        this.style.setProperty('--theme-default-color', `var(--ddd-theme-default-${this.color})`);
       }
     }
+
     // Lit render the HTML
     render() {
         return html`
-        <div class="screenContainer ${this.screenType}">
-          <div class="contentContainer">
-            <h1>${this.title}</h1>
-            <slot name="content"></slot>
-          </div>
-          <div class="imageContainer">
+        <div class="wraper">
+          <div class="image-container">            
             <slot name="image"></slot>
+          </div>
+          <div class="content-container">
+          <h1 class="title">${this.title}</h1>
+            <slot name="content"></slot>
           </div>
         </div>
       `;

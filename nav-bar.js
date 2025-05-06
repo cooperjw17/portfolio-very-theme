@@ -28,10 +28,10 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
       title: "Title",
     };
     this.registerLocalization({
-        context: this,
-        localesPath: new URL("./locales/", import.meta.url).href, 
-        locales: ["ar", "es", "hi", "zh"],
-      });
+      context: this,
+      localesPath: new URL("./locales/", import.meta.url).href, 
+      locales: ["ar", "es", "hi", "zh"],
+    });
   }
 
   // Lit reactive properties
@@ -45,7 +45,7 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
   // Lit scoped styles
   static get styles() {
     return [super.styles,
-    css`
+      css`
       :host {
         display: block;
         color: var(--ddd-theme-primary);
@@ -65,10 +65,10 @@ export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+    <div class="wrapper">
+    <h3><span>${this.t.title}:</span> ${this.title}</h3>
+    <slot></slot>
+    </div>`;
   }
 }
 

@@ -71,4 +71,4 @@ export class PortButton extends DDDSuper(I18NMixin(LitElement)) {
     }
   }
   
-  globalThis.customElements.define(PortfolioVeryTheme.tag, PortfolioVeryTheme);
+  globalThis.customElements.define(PortButton.tag, PortButton);
