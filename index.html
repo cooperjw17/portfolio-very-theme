@@ -4,7 +4,7 @@
 <head>
   <base href="/">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, viewport-fit=cover" />
   <meta name="Description" content="Demonstration for portfolio-very-theme">
 
   <style>
@@ -13,23 +13,40 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      box-sizing: border-box;
-      background-color: var(--ddd-theme-default-nittanyNavy);
-      color-scheme: light dark;
-      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
+      scroll-behavior: smooth;
     }
-    #demo {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    port-screen {
-      display: block;
-      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-white));
-      background-color: var(--ddd-theme-accent);
-      font-family: var(--ddd-font-navigation);
-    }
+    body{
+  overflow-x: hidden; 
+}
+    
+portfolio-very-theme {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+port-screen {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+port-header {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.screenImage {
+  max-width: 100%;
+  height: auto;
+}
 
   </style>
   <title>portfolio-very-theme</title>
