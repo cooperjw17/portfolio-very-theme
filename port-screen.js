@@ -62,7 +62,7 @@ export class PortScreen extends DDDSuper(I18NMixin(LitElement)) {
           font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
         }
 
-        ::slotted(portfolio-screen){
+        ::slotted(port-screen){
           height: 100vh;
           width: 100vw;
           box-sizing: border-box;

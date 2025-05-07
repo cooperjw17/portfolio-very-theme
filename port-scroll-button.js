@@ -26,13 +26,7 @@ export class PortScrollButton extends DDDSuper(I18NMixin(LitElement)) {
         ...this.t,
         title: "Title",
       };
-      this.registerLocalization({
-        context: this,
-        localesPath:
-          new URL("./locales/portfolio-very-theme.ar.json", import.meta.url).href +
-          "/../",
-        locales: ["ar", "es", "hi", "zh"],
-        });
+     
     }
     // Lit reactive properties
     static get properties() {
@@ -65,6 +59,12 @@ export class PortScrollButton extends DDDSuper(I18NMixin(LitElement)) {
           z-index: 9999;
           display: block;
         }
+
+        scroll-button{
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+        }
         
         
         button {
@@ -96,9 +96,7 @@ export class PortScrollButton extends DDDSuper(I18NMixin(LitElement)) {
     // Lit render the HTML
     render() {
       return html`
-        <button @click="${this.scrollToTop}">
-          <span class="buttonInside">⬆</span>
-        </button>
+       <scroll-button></scroll-button>
       `;
     }
   }

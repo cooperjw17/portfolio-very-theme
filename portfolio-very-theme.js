@@ -63,19 +63,19 @@ export class PortfolioVeryTheme extends DDDSuper(I18NMixin(LitElement)) {
         font-size: var(--portfolio-very-theme-label-font-size, var(--ddd-font-size-s));
       }
 
-      ::slotted(portfolio-screen[screenNumber="1"]) {
+      ::slotted(port-screen[screenNumber="1"]) {
         background-color: var(--ddd-theme-default-beaverBlue); 
       }
-      ::slotted(portfolio-screen[screenNumber="2"]) {
+      ::slotted(port-screen[screenNumber="2"]) {
         background-color: var(--ddd-theme-default-nittanyNavy); 
       }
-      ::slotted(portfolio-screen[screenNumber="3"]) {
+      ::slotted(port-screen[screenNumber="3"]) {
         background-color: var(--ddd-theme-default-navy40);
       }
-      ::slotted(portfolio-screen[screenNumber="4"]) {
+      ::slotted(port-screen[screenNumber="4"]) {
         background-color: var(--ddd-theme-default-potentialMidnight); 
       }
-      ::slotted(portfolio-screen[screenNumber="5"]) {
+      ::slotted(port-screen[screenNumber="5"]) {
         background-color: var(--ddd-theme-default-potential50);
       }
     `];
