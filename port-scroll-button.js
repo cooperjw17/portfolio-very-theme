@@ -62,8 +62,8 @@ export class PortScrollButton extends DDDSuper(I18NMixin(LitElement)) {
 
         scroll-button{
             position: fixed;
-            bottom: 5px;
-            right: 5px;
+            bottom: var(--ddd-spacing-2);
+            right: var(--ddd-spacing-2);
         }
         
         
